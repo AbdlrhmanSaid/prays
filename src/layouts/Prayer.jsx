@@ -1,8 +1,8 @@
 import { Card, CardContent, CardMedia } from "@mui/material";
 import { useSelector } from "react-redux";
 import CircularProgress from "@mui/material/CircularProgress";
-import CheckCircleRoundedIcon from "@mui/icons-material/CheckCircleRounded";
-
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCircleCheck } from "@fortawesome/free-regular-svg-icons";
 const Prayer = ({ imge, name, time, isDone }) => {
   const loading = useSelector((state) => state.loading);
 
@@ -19,7 +19,11 @@ const Prayer = ({ imge, name, time, isDone }) => {
               <h3>{time}</h3>
               {isDone && (
                 <h4>
-                  انتهت <CheckCircleRoundedIcon color="success" />
+                  انتهت {""}
+                  <FontAwesomeIcon
+                    icon={faCircleCheck}
+                    style={{ color: "#19d79e" }}
+                  />
                 </h4>
               )}
             </>

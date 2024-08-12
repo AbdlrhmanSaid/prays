@@ -43,8 +43,8 @@ const PrayerList = ({ pray }) => {
   const dispatch = useDispatch();
 
   const prayers = [
-    { name: "فجر", time: convertTo12Hour(pray.Fajr), img: fjr },
-    { name: "ضهر", time: convertTo12Hour(pray.Dhuhr), img: dhr },
+    { name: "الفجر", time: convertTo12Hour(pray.Fajr), img: fjr },
+    { name: "الضهر", time: convertTo12Hour(pray.Dhuhr), img: dhr },
     { name: "العصر", time: convertTo12Hour(pray.Asr), img: asr },
     { name: "المغرب", time: convertTo12Hour(pray.Maghrib), img: mghrb },
     { name: "العشاء", time: convertTo12Hour(pray.Isha), img: isha },
