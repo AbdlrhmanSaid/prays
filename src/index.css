@@ -1,0 +1,66 @@
+@import url("https://fonts.googleapis.com/css2?family=Edu+AU+VIC+WA+NT+Hand:wght@400..700&family=IBM+Plex+Sans+Arabic:wght@100;200;300;400;500;600;700&display=swap");
+
+html {
+  direction: rtl;
+}
+body {
+  background-color: rgb(32, 32, 32) !important;
+  font-family: "IBM Plex Sans Arabic", sans-serif !important;
+}
+
+* {
+  border-color: white !important;
+}
+
+.MuiSvgIcon-root {
+  color: white !important;
+}
+
+.css-4b67si-MuiSvgIcon-root {
+  color: green !important;
+}
+
+.selcetDiv {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.sideBtn {
+  position: fixed !important;
+  left: 5%;
+  top: 10%;
+  color: rgb(32, 32, 32) !important;
+  background: white !important;
+  border: 1px solid black !important;
+}
+
+.sidebarIcon {
+  color: black !important;
+}
+
+/* heading */
+.heading {
+  color: white !important;
+}
+.target-span {
+  text-decoration: underline;
+}
+.prev-sapn {
+  cursor: pointer;
+}
+.prev-sapn:hover {
+  text-decoration: underline;
+}
+/* heading */
+
+.morning {
+  color: white !important;
+}
+
+.css-ahj2mt-MuiTypography-root,
+.css-e784if-MuiTypography-root {
+  text-align: center;
+}
+.css-1p823my-MuiListItem-root {
+  display: block !important;
+}
