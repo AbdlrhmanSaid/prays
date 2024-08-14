@@ -1,8 +1,11 @@
 import React from "react";
 import Heading from "../layouts/Heading";
 import Azkar from "../layouts/Azkar";
+import { useSelector } from "react-redux";
 
 const Night = () => {
+  const { isEnglish } = useSelector((state) => state.lang);
+
   const azkar = [
     {
       category: "يقال مره واحده",
@@ -100,8 +103,11 @@ const Night = () => {
   ];
   return (
     <>
-      <Heading title={"اذكار المساء "} />
-      <Azkar azkar={azkar} title={"أذكار المساء"} />
+      <Heading title={isEnglish ? "Evening Remembrances" : "أذكار المساء"} />
+      <Azkar
+        azkar={azkar}
+        title={isEnglish ? "Evening Remembrances" : "أذكار المساء"}
+      />
     </>
   );
 };

@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from "react";
 import { FormControl, InputLabel, MenuItem, Select } from "@mui/material";
-
+import { useSelector } from "react-redux";
 const GovernorateSelect = ({
   governorate,
   handleChange,
@@ -8,10 +7,12 @@ const GovernorateSelect = ({
   loading,
   error,
 }) => {
+  const { isEnglish } = useSelector((state) => state.lang);
+
   return (
     <FormControl style={{ width: "60%", color: "white" }}>
       <InputLabel id="demo-simple-select-label" style={{ color: "white" }}>
-        المحافظة
+        {isEnglish ? "City" : "المدينة"}
       </InputLabel>
       <Select
         labelId="demo-simple-select-label"
@@ -27,8 +28,13 @@ const GovernorateSelect = ({
           <MenuItem disabled>Error Loading Governorates: {error}</MenuItem>
         ) : (
           governorates.map((gov) => (
-            <MenuItem key={gov.id} value={gov.governorate_name_en}>
-              {gov.governorate_name_ar}
+            <MenuItem
+              key={gov.id}
+              value={
+                isEnglish ? gov.governorate_name_en : gov.governorate_name_ar
+              }
+            >
+              {isEnglish ? gov.governorate_name_en : gov.governorate_name_ar}
             </MenuItem>
           ))
         )}

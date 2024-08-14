@@ -9,8 +9,16 @@ import ListItemButton from "@mui/material/ListItemButton";
 import ListItemText from "@mui/material/ListItemText";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import { useNavigate } from "react-router-dom";
+import ToggleButton from "@mui/material/ToggleButton";
+import ToggleButtonGroup from "@mui/material/ToggleButtonGroup";
+import { useDispatch, useSelector } from "react-redux";
+import { notEnglish, lanEnglish } from "../../store/slices/languageSlice";
 
 const Sidebar = () => {
+  const dispatch = useDispatch();
+
+  const { isEnglish } = useSelector((state) => state.lang);
+
   const [open, setOpen] = useState(false);
   const toggleDrawer = (newOpen) => () => {
     setOpen(newOpen);
@@ -22,8 +30,8 @@ const Sidebar = () => {
     <Box sx={{ width: 250 }} role="presentation" onClick={toggleDrawer(false)}>
       <List>
         {[
-          ["اذكار الصبح  ", "/morning"],
-          ["اذكار المساء", "/night"],
+          [`${isEnglish ? "Morning Remembrances" : "اذكار الصبح"}`, "/morning"],
+          [`${isEnglish ? "Evening Remembrances" : "اذكار المساء "}`, "/night"],
         ].map((text) => (
           <ListItem key={text[0]} disablePadding>
             <ListItemButton
@@ -40,6 +48,12 @@ const Sidebar = () => {
     </Box>
   );
 
+  const [alignment, setAlignment] = useState("web");
+
+  const handleChange = (event, newAlignment) => {
+    setAlignment(newAlignment);
+  };
+
   return (
     <>
       <Button
@@ -51,6 +65,21 @@ const Sidebar = () => {
       </Button>
       <Drawer open={open} onClose={toggleDrawer(false)}>
         {DrawerList}
+        <ToggleButtonGroup
+          color="primary"
+          value={alignment}
+          exclusive
+          onChange={handleChange}
+          aria-label="Platform"
+          style={{ display: "block", textAlign: "center" }}
+        >
+          <ToggleButton value="Ar" onClick={() => dispatch(notEnglish())}>
+            العربية
+          </ToggleButton>
+          <ToggleButton value="en" onClick={() => dispatch(lanEnglish())}>
+            english
+          </ToggleButton>
+        </ToggleButtonGroup>
       </Drawer>
     </>
   );
