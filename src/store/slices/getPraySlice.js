@@ -9,8 +9,15 @@ const initialState = {
 };
 
 export const getPrays = createAsyncThunk("pray/getPray", async (city) => {
+  // الحصول على التاريخ الحالي بتنسيق DD-MM-YYYY
+  const today = new Date();
+  const day = String(today.getDate()).padStart(2, '0');
+  const month = String(today.getMonth() + 1).padStart(2, '0'); // الشهر يبدأ من 0
+  const year = today.getFullYear();
+  const currentDate = `${day}-${month}-${year}`;
+  
   const res = await axios.get(
-    `https://api.aladhan.com/v1/timingsByCity/08-08-2024?city=${city}&country=Egypt`
+    `https://api.aladhan.com/v1/timingsByCity/${currentDate}?city=${city}&country=Egypt`
   );
   return res.data;
 });
@@ -24,7 +31,8 @@ const praySlice = createSlice({
       state.loading = true;
     });
     builder.addCase(getPrays.fulfilled, (state, action) => {
-      return action.payload.data;
+      state.timings = action.payload.data.timings;
+      state.date = action.payload.data.date;
       state.loading = false;
     });
     builder.addCase(getPrays.rejected, (state, action) => {
