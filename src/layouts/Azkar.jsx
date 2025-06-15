@@ -6,10 +6,10 @@ const Azkar = ({ azkar, title }) => {
     <Container
       maxWidth="md"
       style={{
-        backgroundColor: "#121212",
+        backgroundColor: "",
         padding: "30px",
         borderRadius: "10px",
-        boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.5)",
+        boxShadow: "0px 4px 10px #FEFEFE",
       }}
       className="text-center morning"
     >
@@ -17,7 +17,7 @@ const Azkar = ({ azkar, title }) => {
         <Typography
           variant="h4"
           style={{
-            color: "#FFB74D",
+            color: "black",
             fontWeight: "600",
             letterSpacing: "1.5px",
             marginBottom: "20px",
@@ -32,7 +32,7 @@ const Azkar = ({ azkar, title }) => {
             <Typography
               variant="h5"
               style={{
-                color: "#E0E0E0",
+                color: "black",
                 marginBottom: "15px",
                 textDecoration: "underline",
               }}
@@ -49,14 +49,14 @@ const Azkar = ({ azkar, title }) => {
                     <div>
                       <Typography
                         variant="body1"
-                        style={{ color: "white", lineHeight: "1.7" }}
+                        style={{ color: "black", lineHeight: "1.7" }}
                       >
                         {textItem[0]}
                       </Typography>
                       <Typography
                         variant="body2"
                         style={{
-                          color: "#BDBDBD",
+                          color: "black",
                           fontWeight: "bold",
                           marginTop: "5px",
                         }}
@@ -67,7 +67,7 @@ const Azkar = ({ azkar, title }) => {
                   ) : (
                     <Typography
                       variant="body1"
-                      style={{ color: "#E0E0E0", lineHeight: "1.7" }}
+                      style={{ color: "black", lineHeight: "1.7" }}
                     >
                       {textItem}
                     </Typography>

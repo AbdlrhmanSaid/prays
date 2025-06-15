@@ -10,8 +10,13 @@ const GovernorateSelect = ({
   const { isEnglish } = useSelector((state) => state.lang);
 
   return (
-    <FormControl style={{ width: "60%", color: "white" }}>
-      <InputLabel id="demo-simple-select-label" style={{ color: "white" }}>
+    <FormControl
+      style={{
+        width: "60%",
+        color: "black",
+      }}
+    >
+      <InputLabel id="demo-simple-select-label" style={{ color: "black" }}>
         {isEnglish ? "City" : "المدينة"}
       </InputLabel>
       <Select
@@ -20,7 +25,7 @@ const GovernorateSelect = ({
         value={governorate}
         label="Governorate"
         onChange={handleChange}
-        style={{ color: "white" }}
+        style={{ color: "black" }}
       >
         {loading ? (
           <MenuItem disabled>Loading...</MenuItem>

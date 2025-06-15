@@ -4,12 +4,13 @@ html {
   direction: rtl;
 }
 body {
-  background-color: rgb(32, 32, 32) !important;
+  background: url(../src//assets/islamic-pattern.png) !important;
   font-family: "IBM Plex Sans Arabic", sans-serif !important;
 }
-
-* {
-  border-color: white !important;
+.MuiContainer-root {
+  padding: 30px;
+  background: #fefefea3;
+  color: black;
 }
 
 .MuiSvgIcon-root {

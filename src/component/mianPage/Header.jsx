@@ -9,7 +9,11 @@ const HeaderPage = ({ governorate }) => {
   return (
     <Grid container textAlign={"center"} className="text-white mt-4">
       <Grid item xs={12} sm={6} md={6}>
-        <div>
+        <div
+          style={{
+            color: "black",
+          }}
+        >
           <h2>
             <span>{time}</span> |{" "}
             <span>
@@ -19,7 +23,15 @@ const HeaderPage = ({ governorate }) => {
           <span>{date}</span>
         </div>
       </Grid>
-      <Grid item xs={12} sm={6} md={6}>
+      <Grid
+        item
+        xs={12}
+        sm={6}
+        md={6}
+        style={{
+          color: "black",
+        }}
+      >
         <h2>{nextPrayerName}</h2>
         <h2>{remainingTime}</h2>
       </Grid>
