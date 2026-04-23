@@ -1,67 +1,101 @@
 @import url("https://fonts.googleapis.com/css2?family=Edu+AU+VIC+WA+NT+Hand:wght@400..700&family=IBM+Plex+Sans+Arabic:wght@100;200;300;400;500;600;700&display=swap");
 
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 html {
   direction: rtl;
+  scroll-behavior: smooth;
 }
+
 body {
-  background: url(../src//assets/islamic-pattern.png) !important;
+  background: radial-gradient(circle at center, #112240 0%, #0a192f 100%);
+  background-attachment: fixed;
   font-family: "IBM Plex Sans Arabic", sans-serif !important;
+  color: #fff;
+  min-height: 100vh;
+  overflow-x: hidden;
+  padding-top: 40px; /* Added padding from top */
 }
+
+body::after {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url("./assets/islamic-pattern.png");
+  background-repeat: repeat;
+  opacity: 0.05; /* Made it very subtle as requested */
+  pointer-events: none;
+  z-index: -1;
+}
+
 .MuiContainer-root {
-  padding: 30px;
-  background: #fefefea3;
-  color: black;
+  background: transparent;
+  color: white;
+}
+
+.text-center {
+  text-align: center;
 }
 
 .MuiSvgIcon-root {
-  color: white !important;
+  color: inherit;
 }
 
-.css-4b67si-MuiSvgIcon-root {
-  color: green !important;
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+.MuiStack-root {
+  gap: 20px;
 }
 
 .selcetDiv {
   display: flex;
   justify-content: center;
   align-items: center;
-}
-.sideBtn {
-  position: fixed !important;
-  left: 5%;
-  top: 10%;
-  color: rgb(32, 32, 32) !important;
-  background: white !important;
-  border: 1px solid black !important;
+  margin: 30px 0;
+  width: 100%;
 }
 
-.sidebarIcon {
-  color: black !important;
+::-webkit-scrollbar-track {
+  background: #0a192f;
 }
 
-/* heading */
-.heading {
-  color: white !important;
-}
-.target-span {
-  text-decoration: underline;
-}
-.prev-sapn {
-  cursor: pointer;
-}
-.prev-sapn:hover {
-  text-decoration: underline;
-}
-/* heading */
-
-.morning {
-  color: white !important;
+::-webkit-scrollbar-thumb {
+  background: #d4af37;
+  border-radius: 10px;
 }
 
-.css-ahj2mt-MuiTypography-root,
-.css-e784if-MuiTypography-root {
-  text-align: center;
+::-webkit-scrollbar-thumb:hover {
+  background: #b8860b;
 }
-.css-1p823my-MuiListItem-root {
-  display: block !important;
+
+/* Fade In Animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.azkar-container > * {
+  animation: fadeIn 0.6s ease forwards;
+}
+
+/* Selection color */
+::selection {
+  background: rgba(212, 175, 55, 0.3);
+  color: #fff;
 }

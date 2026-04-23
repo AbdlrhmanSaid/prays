@@ -11,8 +11,12 @@ const PrayerList = () => {
     <Stack
       direction={{ xs: "column", md: "row" }}
       justifyContent={"center"}
-      alignItems={"center"}
-      className="gap-3 my-4"
+      alignItems={"stretch"}
+      spacing={2}
+      sx={{
+        margin: "40px 0",
+        flexWrap: "wrap",
+      }}
     >
       {prayers.map((prayer, index) => (
         <Prayer

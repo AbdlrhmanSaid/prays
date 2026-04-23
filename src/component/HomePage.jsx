@@ -20,7 +20,6 @@ const HomePage = () => {
         <link rel="icon" type="image/jpeg" href={logo} />{" "}
       </Helmet>
       <HeaderPage governorate={governorate} />
-      <Divider style={{ borderColor: "white" }} />
 
       <div className="selcetDiv d-flex mt-3">
         <GovernorateSelect

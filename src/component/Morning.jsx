@@ -1,6 +1,7 @@
 import React from "react";
 import Heading from "../layouts/Heading";
 import Azkar from "../layouts/Azkar";
+import Sidebar from "./mianPage/Sidebar";
 import { useSelector } from "react-redux";
 
 const Morning = () => {
@@ -107,6 +108,7 @@ const Morning = () => {
         azkar={azkar}
         title={isEnglish ? "Morning Remembrances" : "أذكار الصباح"}
       />
+      <Sidebar />
     </>
   );
 };
