@@ -3,95 +3,93 @@ import { useSelector } from "react-redux";
 import CircularProgress from "@mui/material/CircularProgress";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleCheck } from "@fortawesome/free-regular-svg-icons";
-import WbTwilightIcon from '@mui/icons-material/WbTwilight';
-import WbSunnyIcon from '@mui/icons-material/WbSunny';
-import LightModeIcon from '@mui/icons-material/LightMode';
-import CloudIcon from '@mui/icons-material/Cloud';
-import DarkModeIcon from '@mui/icons-material/DarkMode';
-import BedtimeIcon from '@mui/icons-material/Bedtime';
+import WbTwilightIcon from "@mui/icons-material/WbTwilight";
+import WbSunnyIcon from "@mui/icons-material/WbSunny";
+import LightModeIcon from "@mui/icons-material/LightMode";
+import CloudIcon from "@mui/icons-material/Cloud";
+import DarkModeIcon from "@mui/icons-material/DarkMode";
+import BedtimeIcon from "@mui/icons-material/Bedtime";
+
+// Fixed accent color per prayer (no gradient)
+const PRAYER_COLORS = {
+  الفجر:   "#e8a598",
+  الشروق:  "#f0c070",
+  الظهر:   "#c9a227",
+  العصر:   "#6fb08a",
+  المغرب:  "#e09060",
+  العشاء:  "#8888cc",
+  Fajr:    "#e8a598",
+  Sunrise: "#f0c070",
+  Dhuhr:   "#c9a227",
+  Asr:     "#6fb08a",
+  Maghrib: "#e09060",
+  Isha:    "#8888cc",
+};
+
+const PRAYER_ICONS = {
+  الفجر:   <WbTwilightIcon sx={{ fontSize: 40 }} />,
+  الشروق:  <WbSunnyIcon   sx={{ fontSize: 40 }} />,
+  الظهر:   <LightModeIcon  sx={{ fontSize: 40 }} />,
+  العصر:   <CloudIcon      sx={{ fontSize: 40 }} />,
+  المغرب:  <DarkModeIcon   sx={{ fontSize: 40 }} />,
+  العشاء:  <BedtimeIcon    sx={{ fontSize: 40 }} />,
+  Fajr:    <WbTwilightIcon sx={{ fontSize: 40 }} />,
+  Sunrise: <WbSunnyIcon    sx={{ fontSize: 40 }} />,
+  Dhuhr:   <LightModeIcon  sx={{ fontSize: 40 }} />,
+  Asr:     <CloudIcon       sx={{ fontSize: 40 }} />,
+  Maghrib: <DarkModeIcon    sx={{ fontSize: 40 }} />,
+  Isha:    <BedtimeIcon     sx={{ fontSize: 40 }} />,
+};
 
 const Prayer = ({ name, time, isDone }) => {
   const loading = useSelector((state) => state.loading);
   const { isEnglish } = useSelector((state) => state.lang);
 
-  const prayerIcons = {
-    الفجر: <WbTwilightIcon sx={{ fontSize: 45 }} />,
-    الشروق: <WbSunnyIcon sx={{ fontSize: 45 }} />,
-    الظهر: <LightModeIcon sx={{ fontSize: 45 }} />,
-    العصر: <CloudIcon sx={{ fontSize: 45 }} />,
-    المغرب: <DarkModeIcon sx={{ fontSize: 45 }} />,
-    العشاء: <BedtimeIcon sx={{ fontSize: 45 }} />,
-    Fajr: <WbTwilightIcon sx={{ fontSize: 45 }} />,
-    Sunrise: <WbSunnyIcon sx={{ fontSize: 45 }} />,
-    Dhuhr: <LightModeIcon sx={{ fontSize: 45 }} />,
-    Asr: <CloudIcon sx={{ fontSize: 45 }} />,
-    Maghrib: <DarkModeIcon sx={{ fontSize: 45 }} />,
-    Isha: <BedtimeIcon sx={{ fontSize: 45 }} />,
-  };
-
-  const prayerColors = {
-    الفجر: "#FF9A8B",
-    الشروق: "#FFD080",
-    الظهر: "#FFF380",
-    العصر: "#80FFB7",
-    المغرب: "#FFB080",
-    العشاء: "#A0A0FF",
-    Fajr: "#FF9A8B",
-    Sunrise: "#FFD080",
-    Dhuhr: "#FFF380",
-    Asr: "#80FFB7",
-    Maghrib: "#FFB080",
-    Isha: "#A0A0FF",
-  };
-
-  const color = prayerColors[name] || "#d4af37";
-  const icon = prayerIcons[name] || <WbSunnyIcon sx={{ fontSize: 45 }} />;
+  const color = PRAYER_COLORS[name] || "#c9a227";
+  const icon  = PRAYER_ICONS[name]  || <WbSunnyIcon sx={{ fontSize: 40 }} />;
 
   return (
     <Box
       sx={{
         flex: 1,
-        minWidth: { xs: "100%", sm: "240px", md: "180px" },
-        background: isDone 
-          ? "rgba(255, 255, 255, 0.03)" 
-          : `linear-gradient(145deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.02) 100%)`,
-        backdropFilter: "blur(12px)",
-        border: `2px solid ${isDone ? "rgba(255, 255, 255, 0.1)" : color + "60"}`,
-        borderRadius: "24px",
-        padding: "30px 20px",
+        minWidth: { xs: "100%", sm: "200px", md: "170px" },
+        background: isDone
+          ? "rgba(255, 255, 255, 0.02)"
+          : "rgba(255, 255, 255, 0.05)",
+        border: `1.5px solid ${isDone ? "rgba(255,255,255,0.07)" : color + "55"}`,
+        borderRadius: "22px",
+        padding: "28px 18px",
         textAlign: "center",
-        transition: "all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)",
+        transition: "all 0.35s ease",
         position: "relative",
-        overflow: "hidden",
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
-        opacity: isDone ? 0.7 : 1,
-        boxShadow: isDone ? "none" : `0 10px 30px ${color}15`,
+        opacity: isDone ? 0.6 : 1,
         "&:hover": {
-          transform: isDone ? "none" : "translateY(-10px)",
-          borderColor: isDone ? "rgba(255, 255, 255, 0.2)" : color,
-          boxShadow: isDone ? "0 5px 15px rgba(0,0,0,0.2)" : `0 20px 40px ${color}30`,
+          transform: isDone ? "none" : "translateY(-8px)",
+          borderColor: isDone ? "rgba(255,255,255,0.12)" : color,
+          boxShadow: isDone ? "none" : `0 16px 36px ${color}20`,
           "& .prayer-icon": {
-            transform: "scale(1.2) rotate(5deg)",
-          }
-        }
+            transform: "scale(1.15)",
+          },
+        },
       }}
     >
       {loading ? (
-        <CircularProgress sx={{ color: color }} size={40} />
+        <CircularProgress sx={{ color }} size={38} />
       ) : (
         <>
           <Box
             className="prayer-icon"
             sx={{
-              color: color,
-              mb: 2,
-              transition: "transform 0.4s ease",
+              color,
+              mb: 1.5,
+              transition: "transform 0.35s ease",
               display: "flex",
               justifyContent: "center",
               alignItems: "center",
-              height: "60px"
+              height: "52px",
             }}
           >
             {icon}
@@ -99,12 +97,11 @@ const Prayer = ({ name, time, isDone }) => {
 
           <Typography
             sx={{
-              color: "rgba(255, 255, 255, 0.7)",
-              fontSize: "15px",
+              color: "rgba(255, 255, 255, 0.65)",
+              fontSize: "14px",
               fontWeight: 600,
-              textTransform: "uppercase",
-              letterSpacing: "1.5px",
-              mb: 0.5
+              letterSpacing: "1px",
+              mb: 0.5,
             }}
           >
             {name}
@@ -112,10 +109,11 @@ const Prayer = ({ name, time, isDone }) => {
 
           <Typography
             sx={{
-              color: "#fff",
-              fontSize: "32px",
+              color: isDone ? "rgba(255,255,255,0.4)" : "#fff",
+              fontSize: "28px",
               fontWeight: "900",
-              letterSpacing: "1px"
+              letterSpacing: "0.5px",
+              fontFamily: "'Outfit', sans-serif",
             }}
           >
             {time}
@@ -124,16 +122,16 @@ const Prayer = ({ name, time, isDone }) => {
           {isDone && (
             <Box
               sx={{
-                mt: 2,
+                mt: 1.5,
                 display: "flex",
                 alignItems: "center",
-                gap: 1,
-                color: "#4CAF50",
-                background: "rgba(76, 175, 80, 0.1)",
-                padding: "4px 12px",
+                gap: 0.8,
+                color: "#5cb85c",
+                background: "rgba(92,184,92,0.1)",
+                padding: "3px 10px",
                 borderRadius: "20px",
                 fontSize: "12px",
-                fontWeight: "800"
+                fontWeight: "700",
               }}
             >
               <FontAwesomeIcon icon={faCircleCheck} />
@@ -141,19 +139,20 @@ const Prayer = ({ name, time, isDone }) => {
             </Box>
           )}
 
-          {/* Decorative element */}
+          {/* Color accent dot */}
           {!isDone && (
             <Box
               sx={{
                 position: "absolute",
-                top: -20,
-                right: -20,
-                width: 60,
-                height: 60,
-                background: color,
-                opacity: 0.1,
+                bottom: 14,
+                left: "50%",
+                transform: "translateX(-50%)",
+                width: 6,
+                height: 6,
                 borderRadius: "50%",
-                filter: "blur(15px)"
+                background: color,
+                boxShadow: `0 0 8px ${color}`,
+                opacity: 0.7,
               }}
             />
           )}

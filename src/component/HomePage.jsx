@@ -1,13 +1,12 @@
-import React, { useEffect, useState } from "react";
-import { Container, Divider } from "@mui/material";
-import HeaderPage from "./mianPage/Header";
+import React from "react";
+import { Container } from "@mui/material";
+import WallClock from "./mianPage/WallClock";
 import PrayerList from "./mianPage/PrayerList";
 import GovernorateSelect from "./mianPage/GovernorateSelect";
 import Sidebar from "./mianPage/Sidebar";
 import "../index.css";
 import { Helmet } from "react-helmet";
 import logo from "../assets/logo.jpeg";
-
 import useGovSelect from "../hooks/useGovSelect";
 
 const HomePage = () => {
@@ -16,10 +15,11 @@ const HomePage = () => {
   return (
     <Container>
       <Helmet>
-        <title> {governorate} | مواقيت الصلاه </title>
-        <link rel="icon" type="image/jpeg" href={logo} />{" "}
+        <title>{governorate} | مواقيت الصلاة</title>
+        <link rel="icon" type="image/jpeg" href={logo} />
       </Helmet>
-      <HeaderPage governorate={governorate} />
+
+      <WallClock governorate={governorate} />
 
       <div className="selcetDiv d-flex mt-3">
         <GovernorateSelect

@@ -7,7 +7,7 @@ import Divider from "@mui/material/Divider";
 import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemText from "@mui/material/ListItemText";
-import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
+import MenuIcon from "@mui/icons-material/Menu";
 import HomeIcon from "@mui/icons-material/Home";
 import NightlightRoundIcon from "@mui/icons-material/NightlightRound";
 import WbSunnyIcon from "@mui/icons-material/WbSunny";
@@ -21,13 +21,10 @@ const Sidebar = () => {
   const dispatch = useDispatch();
   const location = useLocation();
   const navigate = useNavigate();
-
   const { isEnglish } = useSelector((state) => state.lang);
-
   const [open, setOpen] = useState(false);
-  const toggleDrawer = (newOpen) => () => {
-    setOpen(newOpen);
-  };
+
+  const toggleDrawer = (newOpen) => () => setOpen(newOpen);
 
   const menuItems = [
     {
@@ -36,12 +33,12 @@ const Sidebar = () => {
       icon: <HomeIcon />,
     },
     {
-      text: isEnglish ? "Morning Remembrances" : "اذكار الصباح",
+      text: isEnglish ? "Morning Remembrances" : "أذكار الصباح",
       path: "/morning",
       icon: <WbSunnyIcon />,
     },
     {
-      text: isEnglish ? "Evening Remembrances" : "اذكار المساء",
+      text: isEnglish ? "Evening Remembrances" : "أذكار المساء",
       path: "/night",
       icon: <NightlightRoundIcon />,
     },
@@ -50,105 +47,159 @@ const Sidebar = () => {
   const DrawerList = (
     <Box
       sx={{
-        width: 300,
-        background: "linear-gradient(135deg, #0a192f 0%, #112240 100%)",
+        width: 290,
+        background: "#0b1a2e",
         height: "100%",
         color: "white",
+        borderRight: "1px solid rgba(201, 162, 39, 0.15)",
       }}
       role="presentation"
     >
-      <Box sx={{ padding: "30px 20px", textAlign: "center", borderBottom: "1px solid rgba(212, 175, 55, 0.2)" }}>
-        <h2 style={{ color: "#d4af37", fontSize: "28px", margin: "0", fontWeight: "800", letterSpacing: "1px" }}>
-          {isEnglish ? "Menu" : "القائمة"}
-        </h2>
+      {/* Logo / Brand */}
+      <Box
+        sx={{
+          padding: "32px 24px 24px",
+          borderBottom: "1px solid rgba(201, 162, 39, 0.15)",
+          display: "flex",
+          alignItems: "center",
+          gap: 2,
+        }}
+      >
+        <Box>
+          <h3
+            style={{
+              color: "#c9a227",
+              fontSize: "18px",
+              margin: 0,
+              fontWeight: 800,
+            }}
+          >
+            {isEnglish ? "To Remember" : "تذكر"}
+          </h3>
+          <p
+            style={{
+              color: "rgba(255,255,255,0.4)",
+              fontSize: "12px",
+              margin: 0,
+            }}
+          >
+            {isEnglish ? "Prayer Times & Azkar" : "مواقيت الصلاة والأذكار"}
+          </p>
+        </Box>
       </Box>
-      
-      <List sx={{ mt: 2 }}>
+
+      {/* Navigation */}
+      <List sx={{ mt: 1, px: 1 }}>
         {menuItems.map((item) => {
           const isActive = location.pathname === item.path;
           return (
-            <ListItem key={item.path} disablePadding>
+            <ListItem key={item.path} disablePadding sx={{ mb: 0.5 }}>
               <ListItemButton
                 onClick={() => {
                   navigate(item.path);
                   setOpen(false);
                 }}
                 sx={{
-                  color: isActive ? "#d4af37" : "white",
-                  padding: "15px 25px",
-                  transition: "all 0.3s ease",
-                  backgroundColor: isActive ? "rgba(212, 175, 55, 0.1)" : "transparent",
-                  borderLeft: isActive ? "4px solid #d4af37" : "4px solid transparent",
+                  color: isActive ? "#c9a227" : "rgba(255,255,255,0.75)",
+                  padding: "12px 20px",
+                  borderRadius: "12px",
+                  transition: "all 0.25s ease",
+                  background: isActive ? "rgba(201,162,39,0.1)" : "transparent",
+                  flexDirection: "row-reverse",
+                  gap: 1.5,
                   "&:hover": {
-                    background: "rgba(212, 175, 55, 0.15)",
-                    paddingLeft: "30px",
+                    background: "rgba(201,162,39,0.08)",
+                    color: "#c9a227",
                   },
                 }}
               >
-                <Box sx={{ minWidth: "45px", display: "flex", color: isActive ? "#d4af37" : "rgba(255, 255, 255, 0.7)" }}>
+                <Box
+                  sx={{
+                    color: isActive ? "#c9a227" : "rgba(255,255,255,0.4)",
+                    display: "flex",
+                    transition: "color 0.25s",
+                  }}
+                >
                   {item.icon}
                 </Box>
                 <ListItemText
                   primary={item.text}
                   sx={{
+                    textAlign: "right",
                     "& .MuiTypography-root": {
-                      fontSize: "17px",
+                      fontSize: "16px",
                       fontWeight: isActive ? 700 : 500,
                     },
                   }}
                 />
+                {isActive && (
+                  <Box
+                    sx={{
+                      width: 4,
+                      height: 4,
+                      borderRadius: "50%",
+                      background: "#c9a227",
+                      flexShrink: 0,
+                    }}
+                  />
+                )}
               </ListItemButton>
             </ListItem>
           );
         })}
       </List>
 
-      <Divider
-        sx={{ background: "rgba(212, 175, 55, 0.2)", margin: "20px 25px" }}
-      />
+      <Divider sx={{ background: "rgba(201,162,39,0.12)", mx: 3, my: 2 }} />
 
-      <Box sx={{ padding: "10px 25px" }}>
+      {/* Language */}
+      <Box sx={{ padding: "0 20px 24px" }}>
         <p
           style={{
-            color: "#d4af37",
-            fontSize: "13px",
-            marginBottom: "15px",
+            color: "rgba(201,162,39,0.7)",
+            fontSize: "11px",
+            marginBottom: "12px",
             fontWeight: "700",
             textTransform: "uppercase",
-            letterSpacing: "1px"
+            letterSpacing: "1.5px",
+            textAlign: "right",
           }}
         >
           {isEnglish ? "Language" : "اللغة"}
         </p>
         <ToggleButtonGroup
-          color="primary"
           exclusive
-          value={isEnglish ? "en" : "Ar"}
+          value={isEnglish ? "en" : "ar"}
           aria-label="Language Selector"
           sx={{
             display: "flex",
-            gap: "10px",
-            justifyContent: "center",
             width: "100%",
+            gap: "8px",
+            background: "rgba(255,255,255,0.04)",
+            borderRadius: "10px",
+            padding: "4px",
+            border: "none",
           }}
         >
           <ToggleButton
-            value="Ar"
+            value="ar"
             selected={!isEnglish}
             onClick={() => dispatch(notEnglish())}
             sx={{
               flex: 1,
-              color: "white",
-              borderColor: "#d4af37 !important",
-              backgroundColor: "rgba(255, 255, 255, 0.05)",
-              color: "white !important",
-              transition: "all 0.3s ease",
+              borderColor: "transparent !important",
+              backgroundColor: "transparent",
+              color: "rgba(255,255,255,0.5) !important",
+              borderRadius: "8px !important",
+              transition: "all 0.25s ease",
+              fontSize: "14px",
+              fontWeight: 600,
+              fontFamily: "inherit",
               "&.Mui-selected": {
-                backgroundColor: "#d4af37 !important",
-                color: "#0a192f !important",
+                backgroundColor: "#c9a227 !important",
+                color: "#0b1a2e !important",
               },
               "&:hover": {
-                backgroundColor: "rgba(212, 175, 55, 0.2)",
+                backgroundColor: "rgba(201,162,39,0.15) !important",
               },
             }}
           >
@@ -160,17 +211,20 @@ const Sidebar = () => {
             onClick={() => dispatch(lanEnglish())}
             sx={{
               flex: 1,
-              color: "white",
-              borderColor: "#d4af37 !important",
-              backgroundColor: "rgba(255, 255, 255, 0.05)",
-              color: "white !important",
-              transition: "all 0.3s ease",
+              borderColor: "transparent !important",
+              backgroundColor: "transparent",
+              color: "rgba(255,255,255,0.5) !important",
+              borderRadius: "8px !important",
+              transition: "all 0.25s ease",
+              fontSize: "14px",
+              fontWeight: 600,
+              fontFamily: "inherit",
               "&.Mui-selected": {
-                backgroundColor: "#d4af37 !important",
-                color: "#0a192f !important",
+                backgroundColor: "#c9a227 !important",
+                color: "#0b1a2e !important",
               },
               "&:hover": {
-                backgroundColor: "rgba(212, 175, 55, 0.2)",
+                backgroundColor: "rgba(201,162,39,0.15) !important",
               },
             }}
           >
@@ -183,38 +237,39 @@ const Sidebar = () => {
 
   return (
     <>
-      <Button 
-        className="sideBtn" 
+      <Button
+        className="sideBtn"
         onClick={toggleDrawer(true)}
         sx={{
           position: "fixed",
           top: "20px",
-          left: "20px", /* Changed from right to left */
+          left: "20px",
           zIndex: 1200,
-          background: "linear-gradient(135deg, #d4af37 0%, #b8860b 100%)",
-          color: "#0a192f",
+          background: "#c9a227",
+          color: "#0b1a2e",
           minWidth: "auto",
-          width: "50px",
-          height: "50px",
-          borderRadius: "50%",
-          boxShadow: "0 4px 20px rgba(0,0,0,0.5)",
-          transition: "all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275)",
+          width: "46px",
+          height: "46px",
+          borderRadius: "12px",
+          boxShadow: "0 4px 16px rgba(0,0,0,0.35)",
+          transition: "all 0.25s ease",
           "&:hover": {
-            transform: "scale(1.1) rotate(180deg)",
-            background: "#d4af37",
-          }
+            background: "#e2b94a",
+            transform: "scale(1.07)",
+            boxShadow: "0 6px 22px rgba(201,162,39,0.35)",
+          },
         }}
       >
-        <ArrowBackIosNewIcon sx={{ fontSize: "20px" }} /> {/* Changed icon to point correctly */}
+        <MenuIcon sx={{ fontSize: "22px" }} />
       </Button>
       <Drawer
-        anchor="left" /* Changed from right to left */
+        anchor="left"
         open={open}
         onClose={toggleDrawer(false)}
         PaperProps={{
           sx: {
             background: "transparent",
-            boxShadow: "none"
+            boxShadow: "4px 0 30px rgba(0,0,0,0.5)",
           },
         }}
       >

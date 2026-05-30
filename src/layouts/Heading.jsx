@@ -3,7 +3,7 @@ import { Container, Box, Typography, Button } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import HomeIcon from "@mui/icons-material/Home";
-import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 
 const Heading = ({ title }) => {
   const { isEnglish } = useSelector((state) => state.lang);
@@ -12,50 +12,60 @@ const Heading = ({ title }) => {
   return (
     <Box
       sx={{
-        padding: "20px 0",
-        marginBottom: "20px",
-        textAlign: "center",
+        padding: "18px 0",
+        marginBottom: "16px",
       }}
     >
       <Container>
         <Box
           sx={{
-            display: "inline-flex",
+            display: "flex",
             alignItems: "center",
-            gap: "15px",
-            background: "rgba(255, 255, 255, 0.05)",
-            padding: "8px 24px",
-            borderRadius: "50px",
-            border: "1px solid rgba(212, 175, 55, 0.2)",
-            boxShadow: "0 4px 15px rgba(0,0,0,0.1)",
+            gap: "8px",
+            flexDirection: "row-reverse",
+            justifyContent: "center",
           }}
         >
+          {/* Home button */}
           <Button
             onClick={() => navigate("/")}
-            startIcon={isEnglish ? <ArrowBackIcon /> : null}
-            endIcon={!isEnglish ? <ArrowBackIcon sx={{ transform: 'rotate(180deg)' }} /> : null}
+            startIcon={isEnglish ? <HomeIcon /> : null}
+            endIcon={!isEnglish ? <HomeIcon /> : null}
             sx={{
-              color: "#d4af37",
-              fontWeight: 700,
+              color: "rgba(255,255,255,0.55)",
+              fontWeight: 600,
               fontSize: "14px",
               textTransform: "none",
               minWidth: "auto",
-              padding: "4px 12px",
+              padding: "6px 14px",
+              borderRadius: "8px",
+              fontFamily: "inherit",
+              transition: "all 0.2s ease",
               "&:hover": {
-                background: "rgba(212, 175, 55, 0.1)",
+                color: "#c9a227",
+                background: "rgba(201,162,39,0.08)",
               },
+              gap: 1,
             }}
           >
             {isEnglish ? "Home" : "الرئيسية"}
           </Button>
 
-          <Box sx={{ width: "1px", height: "20px", background: "rgba(212, 175, 55, 0.3)" }} />
+          {/* Separator */}
+          <ArrowForwardIosIcon
+            sx={{
+              color: "rgba(255,255,255,0.2)",
+              fontSize: "12px",
+              transform: isEnglish ? "none" : "rotate(180deg)",
+            }}
+          />
 
+          {/* Current page */}
           <Typography
             sx={{
-              color: "rgba(255, 255, 255, 0.7)",
+              color: "#c9a227",
               fontSize: "14px",
-              fontWeight: 600,
+              fontWeight: 700,
             }}
           >
             {title}

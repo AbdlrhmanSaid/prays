@@ -30,35 +30,27 @@ const GovernorateSelect = ({
       <Box
         onClick={() => !loading && !error && setIsOpen(!isOpen)}
         sx={{
-          background:
-            "linear-gradient(135deg, rgba(212, 175, 55, 0.15) 0%, rgba(55, 180, 212, 0.15) 100%)",
-          border: "2.5px solid #d4af37",
-          borderRadius: "15px",
+          background: "rgba(201, 162, 39, 0.1)",
+          border: `2px solid ${isOpen ? "#c9a227" : "rgba(201,162,39,0.4)"}`,
+          borderRadius: "14px",
           padding: "16px 22px",
           cursor: loading || error ? "not-allowed" : "pointer",
           display: "flex",
           justifyContent: "space-between",
           alignItems: "center",
-          transition: "all 0.3s ease",
-          backgroundColor: isOpen
-            ? "rgba(212, 175, 55, 0.22)"
-            : "rgba(212, 175, 55, 0.12)",
-          boxShadow: isOpen
-            ? "0 0 25px rgba(212, 175, 55, 0.4)"
-            : "0 8px 20px rgba(0, 0, 0, 0.2)",
+          transition: "all 0.25s ease",
+          boxShadow: isOpen ? "0 0 20px rgba(201,162,39,0.2)" : "none",
           "&:hover": {
-            backgroundColor: "rgba(212, 175, 55, 0.18)",
-            borderColor: "#e8c547",
-            boxShadow: "0 0 20px rgba(212, 175, 55, 0.35)",
+            background: "rgba(201, 162, 39, 0.15)",
+            borderColor: "#c9a227",
           },
         }}
       >
         <Typography
           sx={{
-            color: governorate ? "white" : "#d4af37",
+            color: governorate ? "white" : "rgba(201,162,39,0.7)",
             fontSize: "16px",
             fontWeight: 500,
-            letterSpacing: "0.5px",
           }}
         >
           {loading
@@ -73,10 +65,10 @@ const GovernorateSelect = ({
         </Typography>
         <KeyboardArrowDownIcon
           sx={{
-            color: "#d4af37",
+            color: "#c9a227",
             transform: isOpen ? "rotate(180deg)" : "rotate(0deg)",
             transition: "transform 0.3s ease",
-            fontSize: "28px",
+            fontSize: "26px",
           }}
         />
       </Box>
@@ -86,18 +78,17 @@ const GovernorateSelect = ({
         <Box
           sx={{
             position: "absolute",
-            top: "calc(100% + 12px)",
+            top: "calc(100% + 10px)",
             left: 0,
             right: 0,
-            background: "linear-gradient(135deg, #0f3460 0%, #16213e 100%)",
-            border: "2px solid #d4af37",
+            background: "#0b1a2e",
+            border: "1.5px solid rgba(201,162,39,0.35)",
             borderRadius: "12px",
-            boxShadow: "0 15px 50px rgba(212, 175, 55, 0.3)",
+            boxShadow: "0 12px 40px rgba(0,0,0,0.5)",
             zIndex: 1000,
-            backdropFilter: "blur(10px)",
             maxHeight: "320px",
             overflowY: "auto",
-            animation: "slideDown 0.3s ease",
+            animation: "slideDown 0.25s ease",
           }}
         >
           {governorates.map((gov, index) => {
@@ -112,32 +103,24 @@ const GovernorateSelect = ({
                 onClick={() => handleSelect(govName)}
                 sx={{
                   padding: "14px 20px",
-                  color: isSelected ? "#0f3460" : "white",
-                  backgroundColor: isSelected ? "#d4af37" : "transparent",
+                  color: isSelected ? "#0b1a2e" : "rgba(255,255,255,0.8)",
+                  backgroundColor: isSelected ? "#c9a227" : "transparent",
                   cursor: "pointer",
                   transition: "all 0.2s ease",
                   borderBottom:
                     index !== governorates.length - 1
-                      ? "1px solid rgba(212, 175, 55, 0.15)"
+                      ? "1px solid rgba(201, 162, 39, 0.12)"
                       : "none",
                   fontSize: "15px",
                   fontWeight: isSelected ? 700 : 500,
-                  letterSpacing: "0.3px",
                   "&:hover": {
                     backgroundColor: isSelected
-                      ? "#e8c547"
-                      : "rgba(212, 175, 55, 0.12)",
-                    paddingLeft: "26px",
+                      ? "#e2b94a"
+                      : "rgba(201, 162, 39, 0.1)",
+                    color: isSelected ? "#0b1a2e" : "white",
                   },
-                  "&:first-of-type": {
-                    borderTopLeftRadius: "10px",
-                    borderTopRightRadius: "10px",
-                  },
-                  "&:last-of-type": {
-                    borderBottomLeftRadius: "10px",
-                    borderBottomRightRadius: "10px",
-                    borderBottom: "none",
-                  },
+                  "&:first-of-type": { borderTopLeftRadius: "10px", borderTopRightRadius: "10px" },
+                  "&:last-of-type": { borderBottomLeftRadius: "10px", borderBottomRightRadius: "10px", borderBottom: "none" },
                 }}
               >
                 {govName}
